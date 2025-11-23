@@ -1,2 +1,11 @@
-# sistema-para-armazenar-e-gerenciar-contatos-pessoais
-"Projeto final da disciplina de técnicas de programação : Sistema para armazenar e gerenciar contatos pessoais."
+# Sistema para Armazenar e Gerenciar Contatos
+
+Projeto desenvolvido em C para a disciplina de Programação de Computadores.
+
+Etapas implementadas:
+- Estrutura Sequencial
+- Estruturas de Decisão
+- Estruturas de Repetição
+- Structs e Arrays
+- Modularização
+- Projeto Completo (Etapa Final)
