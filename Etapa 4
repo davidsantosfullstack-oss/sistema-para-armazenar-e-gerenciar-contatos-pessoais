@@ -1,0 +1,207 @@
+#include <stdio.h>
+
+#include <string.h>
+
+
+
+ struct Contato {
+
+  char nome[50];
+
+  char telefone[12];
+
+  char email[50];
+
+};
+
+
+
+
+
+//void foi usado em exibirContato, pois não retorna nenhum valor. O obetivo é imprimir as informações do contato.
+
+//acessa. acessa o campo da struct armazenada
+
+void exibirContato(struct Contato acessa, int indice) {
+
+  printf("\nContato %d\n", indice + 1);
+
+  printf("Nome: %s\n", acessa.nome);
+
+  printf("Telefone: %s\n", acessa.telefone);
+
+  printf("E-mail: %s\n", acessa.email);
+
+}
+
+
+
+int main() {
+
+  int i;
+
+  int quantidade_de_contatos;
+
+  int encontrado = 0;
+
+
+
+  printf("Quantos contatos deseja cadastrar?");
+
+  scanf("%d", &quantidade_de_contatos);
+
+
+
+  struct Contato contatos[quantidade_de_contatos];
+
+  char buscar[50];
+
+
+
+  for (i = 0; i < quantidade_de_contatos; i++) {
+
+    int nome_verificado = 0;
+
+    int numero_verificado = 0;
+
+    int email_verificado = 0;
+
+
+
+    printf("\nContato %d\n", i + 1);
+
+     
+
+    //entrada e verificação de nome 
+
+    //strlen conta caracteres da string para validar tamanho
+
+    printf("Nome: ");
+
+    scanf(" %s", contatos[i].nome);
+
+    if (strlen(contatos[i].nome) > 0 && strlen(contatos[i].nome) < 50)
+
+      nome_verificado = 1;
+
+
+
+    //entrada e verificação de número
+
+    printf("Insira seu número com DDD: ");
+
+    scanf(" %s", contatos[i].telefone);
+
+    if (strlen(contatos[i].telefone) >= 10 && strlen(contatos[i].telefone) <= 11)
+
+      numero_verificado = 1;
+
+
+
+    //entrada e verificação de e-mail
+
+    //strchr busca um caractere dentro da string para validar presença de @ e .
+
+    printf("E-mail: ");
+
+    scanf(" %s", contatos[i].email);
+
+    if (strchr(contatos[i].email, '@') && strchr(contatos[i].email, '.'))
+
+      email_verificado = 1;
+
+
+
+    // Validação do dados
+
+    printf("\nValidação do Contato %d\n", i + 1);
+
+    if (nome_verificado == 1) {
+
+      printf("Nome: válido\n");
+
+        } else {
+
+        printf("Nome: inválido\n");
+
+      }
+
+         
+
+    if (numero_verificado == 1) {
+
+      printf("Telefone: válido\n");
+
+        } else {
+
+        printf("Telefone: inválido\n");
+
+      }
+
+     
+
+    if (email_verificado == 1) {
+
+      printf("E-mail: válido\n");
+
+        } else {
+
+        printf("E-mail: inválido\n");
+
+      }
+
+  }
+
+
+
+  // Exibir lista de contatos
+
+  printf("\nLista de Contatos\n");
+
+  for (i = 0; i < quantidade_de_contatos; i++) {
+
+    exibirContato(contatos[i], i);
+
+  }
+
+
+
+  // Buscar contato
+
+  printf("\nDigite o nome que deseja buscar: ");
+
+  scanf(" %s", buscar);
+
+
+
+  for (i = 0; i < quantidade_de_contatos; i++) {
+
+    //strcmp foi adicionado para comparar caracteres entre as duas strings para fazer buscas
+
+    if (strcmp(contatos[i].nome, buscar) == 0) {
+
+      printf("\nContato encontrado:\n");
+
+      exibirContato(contatos[i], i);
+
+      encontrado = 1;
+
+      break;
+
+    }
+
+  }
+
+
+
+  if (!encontrado) {
+
+    printf("\nContato não encontrado.\n");
+
+  }
+
+
+
+  return 0;
+
+}
