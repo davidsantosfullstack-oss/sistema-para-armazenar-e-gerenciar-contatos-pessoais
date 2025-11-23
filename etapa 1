@@ -1,0 +1,74 @@
+
+/**************************
+
+ * 
+
+ Etapa 1: Estrutura Sequencial
+
+Conteúdo: Variáveis, entrada e saída de dados.
+
+Objetivo: Cadastro de um contato com nome, telefone e e-mail.
+
+Entrega: Programa que exibe os dados de um contato.
+
+ 
+
+***************************/
+
+#include <stdio.h>
+
+
+
+int main()
+
+{  
+
+  char nome[50];
+
+  char numero[11];
+
+  char email[50];
+
+   
+
+//entrada de dados
+
+//entrada de nome
+
+  printf("Insira seu nome: ");
+
+  scanf(" %s", nome);
+
+   
+
+//entrada de número
+
+  printf("Insira seu número (10 ou 11 dígitos): ");
+
+  scanf(" %s", numero);
+
+   
+
+//entrada de e-mail
+
+  printf("Insira seu e-mail: ");
+
+  scanf(" %s", email);
+
+   
+
+  //saída de dados
+
+printf("\nDados inseridos\n");
+
+    printf("Nome: %s\n", nome);
+
+    printf("Número: %s\n", numero);
+
+    printf("E-mail: %s\n", email);
+
+     
+
+return 0;
+
+}
