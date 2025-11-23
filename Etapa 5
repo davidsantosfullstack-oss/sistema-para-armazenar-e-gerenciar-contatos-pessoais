@@ -1,0 +1,347 @@
+#include <stdio.h>
+
+#include <string.h>
+
+
+
+struct Contato {
+
+  char nome[50];
+
+  char telefone[12];
+
+  char email[50];
+
+};
+
+
+
+// Exibe um contato
+
+void exibirContato(struct Contato c, int indice) {
+
+  printf("\nContato %d\n", indice + 1);
+
+  printf("Nome: %s\n", c.nome);
+
+  printf("Telefone: %s\n", c.telefone);
+
+  printf("E-mail: %s\n", c.email);
+
+}
+
+
+
+// Adiciona um contato
+
+void adicionarContato(struct Contato contatos[], int *quantidade) {
+
+  int nome_verificado = 0;
+
+  int numero_verificado = 0;
+
+  int email_verificado = 0;
+
+
+
+  printf("\nCadastro do Contato %d\n", *quantidade + 1);
+
+
+
+  // Nome
+
+  printf("Nome: ");
+
+  scanf(" %s", contatos[*quantidade].nome);
+
+  if (strlen(contatos[*quantidade].nome) > 0 && strlen(contatos[*quantidade].nome) < 50)
+
+    nome_verificado = 1;
+
+
+
+  // Telefone
+
+  printf("Insira seu número com DDD: ");
+
+  scanf(" %s", contatos[*quantidade].telefone);
+
+  if (strlen(contatos[*quantidade].telefone) >= 10 && strlen(contatos[*quantidade].telefone) <= 11)
+
+    numero_verificado = 1;
+
+
+
+  // E-mail
+
+  printf("E-mail: ");
+
+  scanf(" %s", contatos[*quantidade].email);
+
+  if (strchr(contatos[*quantidade].email, '@') && strchr(contatos[*quantidade].email, '.'))
+
+    email_verificado = 1;
+
+
+
+   // Mostra as validações
+
+  printf("\nValidação do Contato %d\n", *quantidade + 1);
+
+  printf("Nome: %s\n", nome_verificado ? "válido" : "inválido");
+
+  printf("Telefone: %s\n", numero_verificado ? "válido" : "inválido");
+
+  printf("E-mail: %s\n", email_verificado ? "válido" : "inválido");
+
+
+
+   // Incrementa a quantidade total de contatos cadastrados
+
+  (*quantidade)++;
+
+}
+
+
+
+// Lista todos os contatos
+
+void listarContatos(struct Contato contatos[], int quantidade) {
+
+  if (quantidade == 0) {
+
+    printf("\nNenhum contato registrado.\n");
+
+    return;
+
+  }
+
+
+
+  printf("\nLista de Contatos\n");
+
+  for (int i = 0; i < quantidade; i++) {
+
+    exibirContato(contatos[i], i);
+
+     
+
+  }
+
+}
+
+
+
+// Busca contato pelo nome
+
+void buscarContato(struct Contato contatos[], int quantidade) {
+
+  char buscar[50];
+
+  int encontrado = 0;
+
+
+
+  printf("\nDigite o nome que deseja buscar: ");
+
+  scanf(" %s", buscar);
+
+   
+
+   //Faz a busca por um nome igual com strcmp
+
+  for (int i = 0; i < quantidade; i++) {
+
+    if (strcmp(contatos[i].nome, buscar) == 0) {
+
+      printf("\nContato encontrado:\n");
+
+      exibirContato(contatos[i], i);
+
+      encontrado = 1;
+
+      break;
+
+    }
+
+  }
+
+  if (!encontrado) {
+
+    printf("\nContato não encontrado.\n");
+
+  //Exibe erro caso não encontre
+
+  }
+
+}
+
+
+
+// Remove contato
+
+void removerContato(struct Contato contatos[], int *quantidade) {
+
+  char nome[50];
+
+  int encontrado = -1;
+
+
+
+  // Se não houver contatos para remover exibe um erro
+
+  if (*quantidade == 0) {
+
+    printf("\nNenhum contato para remover.\n");
+
+    return;
+
+  }
+
+   // Solicita ao usuário o índice do contato a ser removido
+
+  printf("\nDigite o nome do contato que deseja remover: ");
+
+  scanf(" %s", nome);
+
+
+
+  for (int i = 0; i < *quantidade; i++) {
+
+    if (strcmp(contatos[i].nome, nome) == 0) {
+
+      encontrado = i;
+
+      break;
+
+    }
+
+  }
+
+  // Se não encontrado
+
+  if (encontrado == -1) {
+
+    printf("\nContato não encontrado.\n");
+
+    return;
+
+  }
+
+
+
+  //
+
+  //for (int i = encontrado; i < *quantidade - 1; i++) {
+
+    // contatos[i] = contatos[i + 1];}
+
+   
+
+  // Diminui a quantidade total de contaos
+
+  (*quantidade)--;
+
+  printf("\nContato removido com sucesso!\n");}
+
+
+
+int main() {
+
+  int opcao;
+
+  int quantidade = 0;
+
+  int capacidade;
+
+
+
+  printf("Quantos contatos quer cadastrar?: ");
+
+  scanf("%d", &capacidade);
+
+
+
+  struct Contato contatos[capacidade];
+
+
+
+  // o Loop se repetirá infinitamente até o usuário escolher sair,
+
+  //pois começa sem inicialização, sem condição e sem incremento
+
+  //Isso faz com que o loop nunca pare por si só
+
+  for(;;) {
+
+    printf("\n FUNÇÕES \n");
+
+    printf("1 - Adicionar contato\n");
+
+    printf("2 - Listar contatos\n");
+
+    printf("3 - Buscar contato\n");
+
+    printf("4 - Remover contato\n");
+
+    printf("5 - Sair\n");
+
+    printf("Escolha uma opção: ");
+
+    scanf("%d", &opcao);
+
+   
+
+    // Menu principal
+
+    switch (opcao) {
+
+      case 1:
+
+        if (quantidade < capacidade)
+
+          adicionarContato(contatos, &quantidade);
+
+        else
+
+          printf("\nLimite de contatos atingido!\n");
+
+        break;
+
+      case 2:
+
+        listarContatos(contatos, quantidade);
+
+        break;
+
+      case 3:
+
+        buscarContato(contatos, quantidade);
+
+        break;
+
+      case 4:
+
+        removerContato(contatos, &quantidade);
+
+        break;
+
+      case 5:
+
+        printf("Saindo...\n");
+
+        return 0;
+
+      default:
+
+        printf("Opção inválida!\n");
+
+    }
+
+  }
+
+
+
+  return 0;
+
+}
