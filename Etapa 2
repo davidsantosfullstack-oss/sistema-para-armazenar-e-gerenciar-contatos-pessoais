@@ -1,0 +1,151 @@
+/**************************
+
+ * 
+
+Etapa 2: Estruturas de Decisão
+
+Conteúdo: if-else, switch
+
+Objetivo: Verificar duplicidade ou formato dos dados.
+
+Entrega: Programa que valida os dados do contato.
+
+
+
+Fontes de pesquisa: W3Schools, Youtube: Jonas Henrique
+
+
+
+***************************/
+
+#include <stdio.h>
+
+#include <string.h> //usada para validar os dados inseridos pelo usuário com strlen e strchr
+
+
+
+int main()
+
+{  
+
+  char nome[50];
+
+  char numero[11];
+
+  char email[50];
+
+   
+
+  int nome_verificado,
+
+    email_verificado,
+
+    numero_verificado;
+
+     
+
+     
+
+//entrada de nome
+
+  printf("Insira seu nome: ");
+
+  scanf(" %s", nome);
+
+   
+
+//entrada de número
+
+  printf("Insira seu número (10 ou 11 dígitos): ");
+
+  scanf(" %s", numero);
+
+   
+
+//entrada de e-mail
+
+  printf("Insira seu e-mail: ");
+
+  scanf(" %s", email);
+
+
+
+//verificação de dados
+
+//verificação de nome
+
+  if(strlen(nome) > 0 && strlen(nome) < 50) {
+
+    printf("\nNome válido.\n");
+
+    nome_verificado = 1;
+
+  } else {
+
+    printf("Nome inválido\n");
+
+    nome_verificado = 0;
+
+  }
+
+
+
+//verificação de número, strlen conta caracteres da string para validar tamanho
+
+  if(strlen(numero) >= 10 && strlen(numero) <= 11) {
+
+    printf("Número válido\n");
+
+    numero_verificado = 1;
+
+  } else {
+
+    printf("Número inválido\n");
+
+    numero_verificado = 0;
+
+  }
+
+   
+
+  //verificção de e-mail, strchr busca um caractere dentro da string para validar presença de @ e .
+
+   if(strchr(email, '@') && strchr(email, '.')) {
+
+    printf("E-mail válido\n");
+
+    email_verificado = 1;
+
+  } else {
+
+    printf("E-mail inválido\n");
+
+    email_verificado = 0;
+
+  }
+
+   
+
+//Saída de dados inseridos caso os dados forem validados
+
+  if(nome_verificado && numero_verificado && email_verificado) {
+
+    printf("\nDados inseridos\n");
+
+    printf("Nome: %s\n", nome);
+
+    printf("Número: %s\n", numero);
+
+    printf("E-mail: %s\n", email);
+
+  } else {//caso inválido
+
+    printf("\nCadastro não realizado, pois há dados inválidos.\n");
+
+  }
+
+
+
+  return 0;
+
+}
