@@ -1,0 +1,181 @@
+/* 
+
+Etapa 3
+
+Fontes de pesquisa: Youtube - Programe seu futuro
+
+*/
+
+
+
+#include <stdio.h>
+
+#include <string.h>
+
+
+
+int main() {
+
+  int i;
+
+  int quantidade_de_contatos;
+
+  int encontrado = 0;
+
+
+
+  printf("Quantos contatos deseja cadastrar?");
+
+  scanf("%d", &quantidade_de_contatos);
+
+
+
+  char nome[quantidade_de_contatos][50];
+
+  char telefone[quantidade_de_contatos][12];
+
+  char email[quantidade_de_contatos][50];
+
+  char buscar[50];
+
+
+
+  int nome_verificado = 0;
+
+  int numero_verificado = 0;
+
+  int email_verificado = 0;
+
+
+
+  for (i = 0; i < quantidade_de_contatos; i++) {
+
+    printf("\nContato %d\n", i + 1);
+
+     
+
+    //entrada e verificação de nome 
+
+    //strlen conta caracteres da string para validar tamanho
+
+    printf("Nome: ");
+
+    scanf(" %s", nome[i]);
+
+    if (strlen(nome[i]) > 0 && strlen(nome[i]) < 50) {
+
+      printf("Nome válido.\n");
+
+      nome_verificado = 1;
+
+    } else {
+
+      printf("Nome inválido.\n");
+
+      nome_verificado = 0;}
+
+     
+
+    //entrada e verificação de número
+
+    printf("Insira seu número com DDD: ");
+
+    scanf(" %s", telefone[i]);
+
+    if (strlen(telefone[i]) >= 10 && strlen(telefone[i]) <= 11) {
+
+      printf("Número válido.\n");
+
+      numero_verificado = 1;
+
+    } else {
+
+      printf("Número inválido.\n");
+
+      numero_verificado = 0;
+
+    }
+
+       
+
+    //entrada e verificação de e-mail
+
+    //strchr busca um caractere dentro da string para validar presença de @ e .
+
+    printf("E-mail: ");
+
+    scanf(" %s", email[i]);
+
+    if (strchr(email[i], '@') && strchr(email[i], '.')) {
+
+      printf("E-mail válido.\n");
+
+      email_verificado = 1;
+
+    } else {
+
+      printf("E-mail inválido.\n");
+
+      email_verificado = 0;}
+
+  }
+
+
+
+  // Exibir lista de contatos
+
+  printf("\nLista de Contatos\n");
+
+  for (i = 0; i <quantidade_de_contatos; i++) {
+
+    printf("\nContato %d\n", i + 1);
+
+    printf("Nome: %s\n", nome[i]);
+
+    printf("Telefone: %s\n", telefone[i]);
+
+    printf("E-mail: %s\n", email[i]);
+
+  }
+
+
+
+  // Buscar contato
+
+  printf("\nDigite o nome que deseja buscar: ");
+
+  scanf(" %s", buscar);
+
+
+
+  for (i = 0; i < quantidade_de_contatos; i++) {
+
+    //strcmp foi adicionado para comparar caracteres entre as duas strings para fazer buscas
+
+    if (strcmp(nome[i], buscar) == 0) {
+
+      printf("\nContato encontrado:\n");
+
+      printf("Nome: %s\n", nome[i]);
+
+      printf("Telefone: %s\n", telefone[i]);
+
+      printf("E-mail: %s\n", email[i]);
+
+      encontrado = 1;
+
+      break; }
+
+  }
+
+  if (!encontrado) {
+
+    printf("\nContato não encontrado.\n");
+
+  }
+
+
+
+  return 0;
+
+}
